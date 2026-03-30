@@ -1,8 +1,8 @@
 # Riona AI Agent — Cookie Setup & Session Recovery Guide
 
 ## Project Reference
-- **Project root:** `C:\Users\doria\RionaAIpoptart\Riona-poptart-Agent`
-- **Cookies file:** `C:\Users\doria\RionaAIpoptart\Riona-poptart-Agent\cookies\Instagramcookies.json`
+- **Project root:** `..\RionaAIpoptart\Riona-poptart-Agent`
+- **Cookies file:** `<project-root>\cookies\Instagramcookies.json`
 - **Shell:** Git Bash (Windows)
 
 ---
