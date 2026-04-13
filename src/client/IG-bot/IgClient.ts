@@ -53,6 +53,7 @@ export class IgClient {
         const top = Math.floor((screenHeight - height) / 2);
         this.browser = await puppeteerExtra.launch({
             headless: false,
+            protocolTimeout: 60000,
             args: [
                 `--window-size=${width},${height}`,
                 `--window-position=${left},${top}`
@@ -528,7 +529,17 @@ export class IgClient {
                     );
                     caption = expandedCaption;
                 }
-                // Comment on the post
+                // Comment on the post — must click the comment icon first to reveal the textarea
+                const commentIconSelector = `${postSelector} svg[aria-label="Comment"]`;
+                const commentIcon = await page.$(commentIconSelector);
+                if (commentIcon) {
+                    try {
+                        await commentIcon.click();
+                        await delay(500);
+                    } catch (e) {
+                        // ignore if click fails
+                    }
+                }
                 const commentBoxSelector = `${postSelector} textarea[aria-label*="comment"], ${postSelector} textarea[placeholder*="comment"], ${postSelector} textarea`;
                 const commentBox = await page.$(commentBoxSelector);
                 if (commentBox) {
